@@ -1,32 +1,11 @@
 #include<iostream>
-#include<list>
+#include "directed_graph.cpp"
 
-using namespace std;
 
-class Graph{
-    int V;
-    list<int> *adj;
+class GraphTraversal: public DirectedGraph{
 
     public:
-        Graph(int vertex){
-            this->V = vertex;
-            this->adj = new list<int>[vertex];
-        }
-
-        void addEdge(int src, int dest){
-            this->adj[src].push_front(dest);
-        }
-        
-        void printGraph(){
-            list<int>::iterator it;
-            for(int i = 0; i < this->V; i++){
-                cout << i << " ";
-                for(it = this->adj[i].begin(); it != this->adj[i].end(); it++){
-                    cout << "-> " << *it;
-                }
-                cout << endl;
-            }
-        }
+        GraphTraversal(int v): DirectedGraph(v){}
 
         void BFS(int start){
             bool* visited = new bool[this->V];
@@ -73,8 +52,8 @@ class Graph{
         }
 };
 
-int main(void){
-    Graph g(4);
+int main(){
+    GraphTraversal g(4);
     g.addEdge(0, 1);
     g.addEdge(0, 2);
     g.addEdge(1, 2);

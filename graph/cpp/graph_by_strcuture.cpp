@@ -1,5 +1,5 @@
 #include<iostream>
-#include "graph.h"
+#include "graph_structure.h"
 
 using namespace std;
 
