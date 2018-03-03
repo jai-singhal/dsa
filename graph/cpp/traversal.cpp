@@ -1,9 +1,6 @@
-#include<iostream>
 #include "directed_graph.cpp"
 
-
 class GraphTraversal: public DirectedGraph{
-
     public:
         GraphTraversal(int v): DirectedGraph(v){}
 
