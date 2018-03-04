@@ -22,17 +22,50 @@ class AvlTree{
         TreeNode* insertNode(TreeNode* root, int data){
             if(root == NULL)
                 return new TreeNode(data);
-            else if(root->data <= data)
+            else if(root->data < data)
                 root->right = insertNode(root->right, data);
-            else
+            else if(root->data > data)
                 root->left = insertNode(root->left, data);
 
             root->balance_factor = getHeight(root->right) - getHeight(root->left);
             
             if(root->balance_factor > 1 || root->balance_factor < -1)
-                root = balanceTree(root);
+                root = balanceTree(root, data);
 
             return root;
+        }
+
+        TreeNode* searchNode(TreeNode* root, int key){
+            if(root == NULL || root->data == key)
+                return root;
+            else if(root->data < key)
+                searchNode(root->right, key);
+            else if(root->data > key)
+                searchNode(root->left, key);
+        }
+
+        TreeNode* getSuccessor(TreeNode* root){
+            if(root->left == NULL)    return root;
+            getSuccessor(root->left);
+        }
+
+        TreeNode* deleteNode(TreeNode* node, int key){
+            if(node == NULL)
+                return node;
+                    
+            TreeNode* temp = searchNode(node, key);
+            if (temp == NULL)
+                return temp;
+
+            TreeNode* succ = getSuccessor(temp->right);
+            node->data = succ->data;
+            delete succ;
+
+
+            if(node->balance_factor > 1 || node->balance_factor < -1)
+                node = balanceTree(node, key);
+
+            return node;
         }
 
         int getHeight(TreeNode* root){
@@ -40,13 +73,18 @@ class AvlTree{
             return 1 + max(getHeight(root->left) , getHeight(root->right));
         }
 
-        TreeNode* balanceTree(TreeNode* root){
+        TreeNode* balanceTree(TreeNode* root, int key){
             int bf = root->balance_factor;
-            cout << "bt called " << root->data;
-            if(bf < -1){ //right rotate
-                 root = rightRotate(root);
+            if(bf < -1 && root->left->data < key) //Case 1: Left Left CASE
+                root = rightRotate(root);
+            else if(bf > 1 && root->right->data < key) // Case 2: Right Right Case
+                root = leftRotate(root);
+            else if(bf < -1 && root->left->data > key){ // Case 3: Right Left Case
+                root->left = leftRotate(root->left);
+                root = rightRotate(root);
             }
-            else if(bf > 1){ //left rotate
+            else if(bf > 1 && root->right->data > key){ // Case 4: Left Right Case
+                root->right = rightRotate(root->right);
                 root = leftRotate(root);
             }
             return root;
@@ -72,7 +110,7 @@ class AvlTree{
 
         void preOrder(TreeNode* root){
             if(root != NULL){
-                cout << root->data << " " << root->balance_factor <<  endl;
+                cout << root->data << " ";
                 preOrder(root->left);
                 preOrder(root->right);
             }
@@ -96,28 +134,41 @@ int main(){
     TreeNode* root = NULL;
 
     root = myTree.insertNode(root, 13);
-    root = myTree.insertNode(root, 10);
-    root = myTree.insertNode(root, 15);
     root = myTree.insertNode(root, 5);
-    root = myTree.insertNode(root, 11);
-    root = myTree.insertNode(root, 16);
-    root = myTree.insertNode(root, 4);
-    root = myTree.insertNode(root, 6);
+    root = myTree.insertNode(root, 15);
+    root = myTree.insertNode(root, 10);
     root = myTree.insertNode(root, 14);
-    root = myTree.insertNode(root, 1);   
+    // root = myTree.insertNode(root, 16);  
+    // root = myTree.insertNode(root, 4);
+    // root = myTree.insertNode(root, 1);
+    // root = myTree.insertNode(root, 6);
+    // root = myTree.insertNode(root, 11);
+    // root = myTree.insertNode(root, 8);
+ 
 
-    root = myTree.insertNode(root, 8);
+    
     // root = myTree.insertNode(root, 2);
     // root = myTree.insertNode(root, 12); 
 
     // root = myTree.insertNode(root, 3); 
     // root = myTree.insertNode(root, 20);
     // root = myTree.insertNode(root, 6);
-    cout << "Preorder Traversal of tree: " << endl;
-    myTree.print2D(root);
+    cout << "Preorder Traversal of tree: ";
+    myTree.preOrder(root);
     cout << endl;
 
-    cout << "Height of tree: " << myTree.getHeight(root) << endl;
+    myTree.print2D(root);
+    cout << endl << endl;
+
+
+    root = myTree.deleteNode(root, 5);
+
+    myTree.print2D(root);
+    cout << endl << endl;
+
+    cout << "Preorder Traversal of tree: ";
+    myTree.preOrder(root);
+    cout << endl;
     return 0;
 
 }
