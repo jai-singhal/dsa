@@ -7,7 +7,6 @@ class GraphDetect: public DirectedGraph{
 
         bool isCycleUtil(int s, bool* visited){
             if(visited[s] == false){
-                
                 visited[s] = true;
                 list<int>:: iterator it;
                 for(it = this->adj[s].begin(); it != this->adj[s].end(); it++){
@@ -21,8 +20,6 @@ class GraphDetect: public DirectedGraph{
                         return false;
                 }
             }
-                
-            
         }
 
         bool isCycle(){

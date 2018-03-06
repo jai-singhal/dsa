@@ -54,13 +54,20 @@ class AvlTree{
                 return node;
                     
             TreeNode* temp = searchNode(node, key);
+            //if node is null
             if (temp == NULL)
                 return temp;
-
-            TreeNode* succ = getSuccessor(temp->right);
-            node->data = succ->data;
-            delete succ;
-
+            //if node is child node
+            else if (temp->left == NULL && temp->right == NULL){
+                delete temp;
+                return temp;
+            }
+            else{ // has atleast one child
+                TreeNode* succ = getSuccessor(temp->right);
+                cout << succ->data << "  " << temp->data << "  " << temp-> data << endl;
+                temp->data = succ->data;
+                delete succ; 
+            }
 
             if(node->balance_factor > 1 || node->balance_factor < -1)
                 node = balanceTree(node, key);
