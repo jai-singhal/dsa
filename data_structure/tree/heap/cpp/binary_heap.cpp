@@ -36,8 +36,10 @@ public:
         return this->array[0];
     }
 
-    void extractMin(){
-        
+    int extractMin(){
+        if(heap_size <= 0)
+            return INT_MAX;
+            
 
     }
 
