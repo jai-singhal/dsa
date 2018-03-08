@@ -39,7 +39,11 @@ public:
     int extractMin(){
         if(heap_size <= 0)
             return INT_MAX;
-            
+        if(heap_size == 1){
+            heap_size--;
+            return array[0];
+        }
+        
 
     }
 
