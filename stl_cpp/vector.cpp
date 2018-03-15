@@ -1,12 +1,14 @@
 #include<iostream>
 #include<vector>
-
+#include "readInput.h"
 using namespace std;
 
-int main(void){
 
-    vector <int> v1 = {20, 30, 40, 25, 15};
-        
+int main(){
+
+    vector <int> v1 = readFileAndMakeVector();
+    
+
     cout << v1.front() << endl;
      
     return 0;
