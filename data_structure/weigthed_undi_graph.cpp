@@ -3,19 +3,20 @@
 
 using namespace std;
 
-class DirectedGraph{
+class UndirectedWeightedGraph{
     protected:
         int V;
         list<int> *adj;
 
     public:
-        DirectedGraph(int vertex){
+        UndirectedWeightedGraph(int vertex){
             this->V = vertex;
             this->adj = new list<int>[vertex];
         }
 
         void addEdge(int src, int dest){
-            this->adj[src].push_back(dest);
+            this->adj[src].push_front(dest);
+            this->adj[dest].push_front(src);
         }
 
         void printGraph(){
