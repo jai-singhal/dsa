@@ -1,12 +1,9 @@
 #include "../directed_graph.cpp"
 
 class GraphDetect: public DirectedGraph{
-
     public:
         GraphDetect(int v): DirectedGraph(v){}
-
         bool isCycleUtil(int s, bool* visited, bool* recursionStack){
-            
             if( !visited[s] ){
                 visited[s] = true;
                 recursionStack[s] = true;
@@ -51,4 +48,3 @@ int main(void){
     cout << g.isCycle();
     return 0;
 }
-

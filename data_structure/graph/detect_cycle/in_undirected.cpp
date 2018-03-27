@@ -30,7 +30,6 @@ class DetectCycle: public UndirectedGraph{
             }
             return false;
         }
-
 };
 
 int main(){
