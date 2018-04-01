@@ -7,10 +7,11 @@ class Node{
     public:
         int vertex;
         int weight;
-    Node(int v, int w){
-        vertex = v;
-        weight = w;
-    }
+   
+        Node(int v, int w){
+            vertex = v;
+            weight = w;
+        }
 };
 
 class UndirectedWeightedGraph{

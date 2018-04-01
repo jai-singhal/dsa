@@ -54,7 +54,6 @@ public:
             swap(this->array[parent(i)], this->array[i]);
             i = parent(i);
         }      
-
     }
 
     void insert(int key){  //O(logn)
