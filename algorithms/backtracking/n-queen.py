@@ -3,8 +3,8 @@ from pprint import pprint
 def printBoard(arr):
     for row in arr:
         for col in row:
-            print(col, end = "")
-    print("") 
+            print(col, end = " ")
+        print("") 
 
 
 def isSafe(arr, row, col, N):
@@ -34,7 +34,7 @@ def nQueenProblem(arr, col, N):
             if nQueenProblem(arr, col+1, N):
                 return True
 
-            arr[i][col] = 0
+            arr[i][col] = 0 #backtrack
        
     return False
 
@@ -43,7 +43,7 @@ def main():
     N = 8
     arr = [[0 for row in range(N)] for col in range(N)]
     nQueenProblem(arr, 0, N)
-    pprint(arr)
+    printBoard(arr)
 
 if __name__ == "__main__":
     main()
