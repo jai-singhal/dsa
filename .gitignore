@@ -1,2 +1,5 @@
 .vscode/
 a.out
+.ipynb_checkpoints
+*.ipynb
+.vscode
