@@ -126,7 +126,6 @@ class PathFinding: public UndirectedWeightedGraph, public BinaryMinHeap{
                     dist = 0;
                 else
                     dist =  INT_MAX;
-
                 minHeap.insert(i, dist);
             }
             return minHeap;
@@ -138,26 +137,26 @@ class PathFinding: public UndirectedWeightedGraph, public BinaryMinHeap{
             
             while(!minHeap.empty()){
                 Item u = minHeap.extractMin();
-                printWeights(minHeap);
-                // cout << u.vertex << " -> ";
+                cout << u.vertex  << endl;
                 for(it = this->adj[u.vertex].begin(); it != this->adj[u.vertex].end(); it++){
-                    // cout << (*it).vertex <<  " " << (*it).weight << " & ";
                     int v = (*it).vertex;
                     int ind = minHeap.get_index(v);
-                    // if ( ind != -1 && minHeap.is_available(v) && 
-                    //         u.dist + (*it).weight < minHeap.arr[ind].dist ){
-
-                    //      minHeap.arr[ind].dist += (*it).weight;  
-                    // }
+                    if ( ind != -1 && minHeap.is_available(v) && 
+                            u.dist + (*it).weight < minHeap.arr[ind].dist ){
+                        if(minHeap.arr[ind].dist == INT_MAX)
+                            minHeap.arr[ind].dist = (*it).weight;
+                        else
+                            minHeap.arr[ind].dist += (*it).weight;                              
+                    }
                 }
             }
-            
+            printWeights(minHeap);
         }
 
         void printWeights(BinaryMinHeap minHeap){   
             cout << this->V << endl; 
             for(int i = 0; i < this->V; i++){
-                cout << minHeap.arr[i].vertex << "  " << minHeap.arr[i].dist << endl;
+                cout << minHeap.arr[i].vertex << " -> " << minHeap.arr[i].dist << endl;
             }
         }
 
@@ -171,19 +170,19 @@ int main(){
     G.addEdge(2, 3, 20);
     G.addEdge(1, 3, 16);
     G.addEdge(1, 2, 5);
-    // G.addEdge( 0, 7, 8);
-    // G.addEdge( 1, 2, 8);
-    // G.addEdge( 1, 7, 11);
-    // G.addEdge( 2, 3, 7);
-    // G.addEdge( 2, 8, 2);
-    // G.addEdge( 2, 5, 4);
-    // G.addEdge( 3, 4, 9);
-    // G.addEdge( 3, 5, 14);
-    // G.addEdge( 4, 5, 10);
-    // G.addEdge( 5, 6, 2);
-    // G.addEdge( 6, 7, 1);
-    // G.addEdge( 6, 8, 6);
-    // G.addEdge( 7, 8, 7);
+    G.addEdge( 0, 7, 8);
+    G.addEdge( 1, 2, 8);
+    G.addEdge( 1, 7, 11);
+    G.addEdge( 2, 3, 7);
+    G.addEdge( 2, 8, 2);
+    G.addEdge( 2, 5, 4);
+    G.addEdge( 3, 4, 9);
+    G.addEdge( 3, 5, 14);
+    G.addEdge( 4, 5, 10);
+    G.addEdge( 5, 6, 2);
+    G.addEdge( 6, 7, 1);
+    G.addEdge( 6, 8, 6);
+    G.addEdge( 7, 8, 7);
 
     G.minWtPath();
     // G.printWeights();
