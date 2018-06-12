@@ -1,5 +1,5 @@
-#include "binary_min_heap.h"
-#include "binary_max_heap.h"
+#include "binary_min_heap.cpp"
+#include "binary_max_heap.cpp"
 using namespace std;
 
 int main(){

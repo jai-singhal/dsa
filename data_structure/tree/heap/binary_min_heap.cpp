@@ -3,16 +3,23 @@
 using namespace std;
 
 class BinaryMinHeap{
-    int *array;
     int capacity;
     int heap_size;
 
 public:
+    int *array;
+
     BinaryMinHeap(int capacity){
         array =  new int[capacity]; 
         this->capacity = capacity;
         this->heap_size = 0;
     }
+
+    bool isEmpty(){
+        return this->heap_size == 0;
+    }
+
+
     void swap(int &a, int &b){
         int temp = a;
         a = b;
@@ -42,9 +49,12 @@ public:
             heap_size--;
             return array[0];
         }
+        int temp = array[0];
         this->array[0] = this->array[this->heap_size-1];
         this->heap_size--;
         minHeapify(0);
+    
+        return temp;
     }
 
     void decreaseKey(int i, int val){ //logn
@@ -85,11 +95,11 @@ public:
             smallest = l;
         if(r < this->heap_size && this->array[r] < this->array[smallest])
             smallest = r;
+
         if(i!=smallest){
             swap(this->array[i], this->array[smallest]);
             minHeapify(smallest);
         }
-        
     }
 
     void heapify(int i, int n){ // O(logn)

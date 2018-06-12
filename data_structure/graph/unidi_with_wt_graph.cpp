@@ -15,11 +15,10 @@ class Node{
 };
 
 class UndirectedWeightedGraph{
-    protected:
+    public:
         int V;
         list<Node> *adj;
 
-    public:
         UndirectedWeightedGraph(int vertex){
             this->V = vertex;
             this->adj = new list<Node>[vertex];
