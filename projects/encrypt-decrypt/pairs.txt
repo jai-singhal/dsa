@@ -1,0 +1,32 @@
+00000 aa bb cc dd ee ff gg hh ii jj kk ll mm nn oo pp qq rr ss tt uu vv ww xx yy zz .. __
+00001 ab cd ef gh ij kl mn op qr st uv wx yz ._
+00010 ac bd eg fh ik jl mo np qs rt uw vx y. z_
+00011 ad bc eh fg il jk mp no qt rs ux vw y_ z. 
+00100 ae bf cg dh im jn ko lp qu rv sw tx
+00101 af be ch dg in jm kp lo qv ru sx tw
+00110 ag bh ce df io jp km ln qw rx su tv
+00111 ah bg cf de ip jo kn lm qx rw sv tu
+01000 ai bj ck dl em fn go hp qy rz s. t_
+01001 aj bi cl dk en fm gp ho qz ry s_ t.
+01010 ak bl ci dj eo fp gm hn q. r_ sy tz 
+01011 al bk cj di ep fo gn hm q_ r. sz ty
+01100 am bn co dp ei fj gk hl uy vz w. x_
+01101 an bm cp do ej fi gl hk uz vy w_ x.
+01110 ao bp cm dn ek fl gi hj u. v_ wy xz
+01111 ap bo cn dm el fk gj hi u_ v. wz xy
+10000 aq br cs dt eu fv gw hx iy jz k. l_
+10001 ar bq ct ds ev fu gx hw iz jy k_ l.
+10010 as bt cq dr ew fx gu hv i. j_ ky lz 
+10011 at bs cr dq ex fw gv hu i_ j. kz ly
+10100 au bv cw dx eq fr gs ht my nz o. p_
+10101 av bu cx dw er fq gt hs mz ny o_ p.
+10110 aw bx cu dv es ft gq hr m. n_ oy pz 
+10111 ax bw cv du et fs gr hq m_ n. oz py
+11000 ay bz c. d_ iq jr ks lt mu nv ow px
+11001 az by c_ d. ir jq kt ls mv nu ox pw
+11010 is jt cy dz a. b_ kq lr mw nx ou pv
+11011 it js cz dy a_ b. kr lq mx nw ov pu
+11100 ey fz g. h_ iu jv kw lx mq nr os pt
+11101 ez fy g_ h. iv ju kx lw mr nq ot ps
+11110 e. f_ gy hz iw jx ku lv ms nt oq pr
+11111 e_ f. gz hy ix jw kv lu mt ns or pq
