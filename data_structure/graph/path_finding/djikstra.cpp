@@ -136,13 +136,13 @@ class PathFinding: public UndirectedWeightedGraph, public BinaryMinHeap{
             list<Node> :: iterator it;
             
             while(!minHeap.empty()){
-                Item u = minHeap.extractMin();
-                cout << u.vertex  << endl;
+                Item u = minHeap     .extractMin();
                 for(it = this->adj[u.vertex].begin(); it != this->adj[u.vertex].end(); it++){
                     int v = (*it).vertex;
                     int ind = minHeap.get_index(v);
                     if ( ind != -1 && minHeap.is_available(v) && 
                             u.dist + (*it).weight < minHeap.arr[ind].dist ){
+
                         if(minHeap.arr[ind].dist == INT_MAX)
                             minHeap.arr[ind].dist = (*it).weight;
                         else
@@ -163,7 +163,7 @@ class PathFinding: public UndirectedWeightedGraph, public BinaryMinHeap{
 };
 
 int main(){
-    PathFinding G = PathFinding(4);
+    PathFinding G = PathFinding(9);
 
     G.addEdge(0, 1, 10);
     G.addEdge(0, 2, 20);
@@ -171,9 +171,7 @@ int main(){
     G.addEdge(1, 3, 16);
     G.addEdge(1, 2, 5);
     G.addEdge( 0, 7, 8);
-    G.addEdge( 1, 2, 8);
     G.addEdge( 1, 7, 11);
-    G.addEdge( 2, 3, 7);
     G.addEdge( 2, 8, 2);
     G.addEdge( 2, 5, 4);
     G.addEdge( 3, 4, 9);
