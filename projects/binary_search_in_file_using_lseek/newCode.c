@@ -20,12 +20,16 @@ void binarySearch(char* fileName, char* idName) {
     int totalChar = lseek(f_write, 1, SEEK_END)- lseek(f_write, 1, SEEK_SET);
 
     int r = (totalChar+2)/lineWidth, l = 0, mid = 0;
+    int totalLines = r;
+
     lseek(f_write, 0, SEEK_SET);
     int key = atoi(idName), id1 = 0;
     int found = FALSE;
 
     // BINARY SEARCH
+    int count = 0;
     while (l <= r){
+    	count++;
     	if(found == 1)
     		break;
     	mid = l + (r-l)/2;
@@ -68,16 +72,16 @@ void binarySearch(char* fileName, char* idName) {
     if(!found)
     	printf("No entries found\n");
     close(f_write); 
+
+    printf("\n\nComplexity = %d from n = %d\n", count, totalLines);
 } 
 
 int main(int argc, char *argv[]) { 
 	if(argc < 3){
 		printf("You have entered too few  arguments.\n");
-		return 1;
 	}
 	else if(argc > 3){
 		printf("You have entered too many arguments.\n");
-		return 2;
 	}
 	else{
 		printf("You have entered the correct number of arguments.\n");
@@ -95,16 +99,13 @@ int main(int argc, char *argv[]) {
 		}
 		else{
 			printf("Your index has a non-numeric character.\n");
-			return 5;
 		}
 	}
 	if(count > idLength){
 		printf("Your index is greater than 6 characters.\n");
-		return 3;
 	}
 	else if(count < idLength){
 		printf("Your index is less than 6 characters.\n");
-		return 4;
 	}
 	else{
 		printf("Your index is 6 characters.\n");
