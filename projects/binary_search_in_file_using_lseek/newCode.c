@@ -54,12 +54,13 @@ void binarySearch(char* fileName, char* idName) {
 			lseek(f_write, mid*lineWidth, SEEK_SET);
 			charPointer = 0;
 			while (read(f_write, arr, 1)){ 
-				if (charPointer < 32) {
+				if (charPointer < 31) {
 					printf("%c", arr[0]);
 					charPointer++;
 				}
 			}
 			found = TRUE;
+			break;
 		}
 		if (id1 > key) {
 			r = mid - 1; 
