@@ -3,8 +3,8 @@
 #include <string.h> // to use String
 #include <stdbool.h> // to define bool
 
-char output[100][10][20]; // [total][line][word]
-int total = 0;
+char*** output;
+int totalCombinations = 0;
 
 void swap(char **x, char **y) { 
     char* temp; 
@@ -27,30 +27,27 @@ bool isPalRec(char word[], int start, int end){
 }
 
 bool isPalindrom(char word[]) {
-
     int length = strlen(word);
-
     if(length == 0) return true;
     return isPalRec(word, 0, length - 1);
 }
 
-
-
-void checkPalindrom(char* data[], int s, int count){
-
-	char combn[50];
+void checkPalindrom(char* data[], int palLength, int count){
+	char combn[60];
 	int comb_index = 0;
-    for (int j=0; j<s; j++){
+    for (int j=0; j<palLength; j++){
     	for(int m = 0; m < strlen(data[j]); m++)
     		combn[comb_index++] = data[j][m];
     }
     combn[comb_index] = '\0';
-
 	bool isPermutationPalindrom = isPalindrom(combn);
     if(isPermutationPalindrom){
-    	for(int i = 0; i < s; i++)
-    		strcpy(output[total][i], data[i]);
-    	total++;
+        output[totalCombinations] = (char**)malloc(palLength*sizeof(char**));
+    	for(int i = 0; i < palLength; i++){
+            output[totalCombinations][i] = (char*)malloc(strlen(data[i])*sizeof(char) + 1);
+    		strcpy(output[totalCombinations][i], data[i]); // xx
+        }
+    	totalCombinations++;
     }
 }
 
@@ -87,25 +84,50 @@ void combinationUtil(char arr[][100], int n, int r, int index, char* data[], int
     data[index] = arr[i];
     combinationUtil(arr, n, r, index+1, data, i+1); 
     combinationUtil(arr, n, r, index, data, i+1); 
-} 
+}
 
 
-void printCombination(char arr[][100], int n, int r) { 
+void bubbleSort(int palLength){ 
+    char** temp;
+    int k = 0;
+    for (int i = 0; i < totalCombinations - 1; ++i){
+        for(int j = 0; j < totalCombinations-i-1; ++j){
+            k = 0;
+            while(strcmp(output[j][k], output[j+1][k]) == 0 && k < palLength)
+                k++;
+            if(strcmp(output[j][k], output[j+1][k]) > 0){
+                temp = output[j];
+                output[j] = output[j+1];
+                output[j+1] = temp;
+            }
+        }
+    }
+}
+
+void printInLexioGrahicOrder(int palLength){
+    bubbleSort(palLength);
+    for(int i = 0; i < totalCombinations; i++){
+        for(int j = 0; j < palLength; j++)
+            printf("%s ", output[i][j]);
+        printf("\n");
+    }
+}
+
+void getCombinations(char arr[][100], int n, int r) { 
     char* data[r]; 
     combinationUtil(arr, n, r, 0, data, 0); 
 }
 
 int main(int argc, char const *argv[]){
 	char arr[100][100];
+    output = (char***)malloc(100*sizeof(char**));
+
     int lineNumber = 0;
     if(argc < 3){
     	printf("You should enter 2 arguements i.e., filename followed by palLength\n");
     	return 0;
     }
-    int r = atoi(argv[2]);
-    char filename[100];
-    strcpy(filename, argv[1]);
-	FILE *file = fopen (filename, "r" );
+	FILE *file = fopen (argv[1], "r" );
 	if ( file != NULL ){
 		char line [100]; 
 		while ( fgets ( line, sizeof(line), file ) != NULL ) {
@@ -119,13 +141,10 @@ int main(int argc, char const *argv[]){
 		printf("Input file should have some data\n");
 	}
 
-	printCombination(arr, lineNumber, r);
+    int palLength = atoi(argv[2]);
 
-	for(int i = 0; i < total; i++){
-		for(int j = 0; j < r; j++){
-			printf("%s ", output[i][j]);
-		}
-		printf("\n");
-	}
+	getCombinations(arr, lineNumber, palLength);
+    printInLexioGrahicOrder(palLength);
+
 	return 0;
 }
