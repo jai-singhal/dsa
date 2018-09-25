@@ -1,4 +1,0 @@
-12, 12 Gaurav null
-14, 14 David asdsd
-15, 15 Huseen null
-122, 122 HH null
