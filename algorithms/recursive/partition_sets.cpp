@@ -12,6 +12,7 @@ Output : Set 1 = {2, 9},
          Set 3 = {7, 4}
 Sum all of the sets is 11 and equal.
 
+
 Input : arr = {1, 5, 3}
 Output : -1
 No partitioning results in equal sum sets.
