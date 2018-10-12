@@ -1,28 +1,4 @@
 
-// Conversation opened. 1 read message.
-
-// Skip to content
-// Using Florida Institute of Technology Mail with screen readers
-
-//   More 
-// 8 of 5,910
- 
-// hw2 
-// Inbox
-// x 
-
-// Emran Kebede <ekebede2013@my.fit.edu>
-// Attachments2:25 AM (11 hours ago)
-// to me 
-
-// Attachments area
-	
-// Click here to Reply or Forward
-// Using 1.2 GB
-// Program Policies
-// Powered by Google
-// Last account activity: 15 minutes ago
-// Details
 
 #include <stdlib.h> // to use NULL
 #include <stdio.h>  // to use printf

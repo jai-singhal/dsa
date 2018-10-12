@@ -29,7 +29,7 @@ using namespace std;
     }
 }
  int main(int argc, char const *argv[]){
-    int n = 28;
+    int n = 5;
     vector <int> arr;
     int* max_prod;
     *max_prod = 1;
