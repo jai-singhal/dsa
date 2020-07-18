@@ -23,6 +23,7 @@ int main() {
             while(demoniations[k]-- > 0)
                 cout << changes[k] << " ";
 	    }
+        cout << endl;
 	    
 	}
 	return 0;

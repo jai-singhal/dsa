@@ -1,0 +1,33 @@
+{
+    "reports": [
+        {
+            "deviceid": "98c070da-9d72-4331-b668-881983b7bd45",
+            "users": [
+                {
+                    "name": "Jai Singhal",
+                    "age": 23,
+                    "gender": "male",
+                    "rides": [
+                        {
+                            "start_time": "1594577691.446499",
+                            "end_time": "1594574642.215124",
+                            "ride_id": "1",
+                            "activity":[
+                                {
+                                    "timestamp": "1594577691.4531455",
+                                    "drowsy": 0
+                                },
+                                {
+                                    "timestamp": "1594577691.4531442",
+                                    "drowsy": 0
+                                }
+                            ]
+                        }
+                        
+                    ],
+                    "userid": 1
+                }
+            ]
+        }
+    ]
+}

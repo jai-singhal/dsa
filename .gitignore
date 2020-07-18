@@ -4,3 +4,4 @@ a.out
 *.ipynb
 .vscode
 *.exe
+*.out
