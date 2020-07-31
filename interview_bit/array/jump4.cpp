@@ -1,7 +1,7 @@
     // https://leetcode.com/problems/jump-game-iv/
 #include<iostream>
 #include<vector>
-#include<stack>
+#include<queue>
 #include<algorithm>
 #include<unordered_map>
 
@@ -26,25 +26,21 @@ int minJumps(vector<int>& arr) {
 
     for(int i = 0; i < len; i++)    steps[i] = i;
 
-    stack<int> to_visit;
+    queue<int> to_visit;
 
     int start = 0;
     to_visit.push(start);
     
     while(!to_visit.empty()){
-        start = to_visit.top();
-        cout << "start: " <<  start << endl;
-
+        start = to_visit.front();
         to_visit.pop();
         if(!vistied[start]){
+            
             if(start + 1 < len){
                 steps[start+1] = min(steps[start+1], steps[start] + 1);
                 to_visit.push(start + 1);
             }
-            if(start - 1 >= 0){
-                steps[start-1] = min(steps[start-1], steps[start] + 1);
-                to_visit.push(start - 1);
-            }
+
             if(same.find(arr[start])->second.size() > 1){
                 for(auto s: same.find(arr[start])->second){
                     if(s!=start){
@@ -53,27 +49,14 @@ int minJumps(vector<int>& arr) {
                     }
                 }
             }
+            if(start - 1 >= 0){
+                steps[start-1] = min(steps[start-1], steps[start] + 1);
+                to_visit.push(start - 1);
+            }
+
         }
         vistied[start] = true;
     }
-
-    for(auto s: steps){
-        cout << s << " ";
-    }
-
-    cout << endl;
-
-    for(int i = 1; i < steps.size(); i++){
-        if(steps[i-1] + 1 < steps[i])
-            steps[i] = steps[i-1] + 1;
-        if(steps[i] + 1 < steps[i-1])
-            steps[i-1] = steps[i] + 1;
-    }
-
-    for(auto s: steps){
-        cout << s << " ";
-    }
-    cout << endl;
     return steps[len-1];
 }
 
