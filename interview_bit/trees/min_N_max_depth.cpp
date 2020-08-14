@@ -1,4 +1,5 @@
 // https://www.interviewbit.com/problems/max-depth-of-binary-tree/
+// https://www.interviewbit.com/problems/min-depth-of-binary-tree/
 #include<iostream>
 #include<algorithm>
 using namespace std;
