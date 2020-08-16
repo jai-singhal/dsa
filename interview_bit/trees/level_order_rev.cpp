@@ -13,11 +13,61 @@ struct node{
 node* left, *right;
 };
 
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
+
 node* createNode(int data){
     node* newNode = new node();
     newNode->data = data;
     return newNode;
 }
+
+
+
+vector<vector<int> > zigzagLevelOrder(TreeNode* root) {
+    vector<vector<int>> solution;
+    queue<TreeNode*> q;
+    q.push(root);
+    q.push(nullptr);
+    bool zigzag=false;
+    vector<int> level;
+    TreeNode* temp;
+    while(!q.empty()){
+        temp = q.front();
+        q.pop();
+
+        cout << "Q size: "<< q.size() << endl;
+        cout << "1" << endl;
+
+        if(temp == nullptr){
+            if(!q.empty())
+                q.push(NULL);
+            cout << "2" << endl;
+            
+            if(zigzag)
+                reverse(level.begin(), level.end());
+
+            zigzag = !zigzag;
+            solution.push_back(level);
+            level.clear();
+        }
+        else{
+            cout << "3" << endl;
+
+            if(temp->left)
+                q.push(temp->left);
+            if(temp->right);
+                q.push(temp->right); 
+            level.push_back(temp->val);
+        }
+    }
+    return solution;
+}
+
 
 vector<int> reverseLevelOrder(node* head){
     queue<node*>q;
@@ -142,31 +192,41 @@ void recursiveLevelOrder(node* root){
 }
 
 int main(){
-    node* head = createNode(1);
-    node* temp1 = head->left = createNode(2);
-    node* temp2 = head->right = createNode(3);
-    temp1->left = createNode(4);
-    temp1->right = createNode(5);
-    temp2->left = createNode(6);
-    temp2->right = createNode(7);
+    // node* head = createNode(1);
+    // node* temp1 = head->left = createNode(2);
+    // node* temp2 = head->right = createNode(3);
+    // temp1->left = createNode(4);
+    // temp1->right = createNode(5);
+    // temp2->left = createNode(6);
+    // temp2->right = createNode(7);
 
-    // vector<int> solution1 = reverseLevelOrder(head);
-    // for(auto s: solution1)
+    // // vector<int> solution1 = reverseLevelOrder(head);
+    // // for(auto s: solution1)
+    // //     cout << s << " ";
+    // // cout << endl;
+
+    // vector<int> solution2 = levelOrder(head);
+    // for(auto s: solution2)
     //     cout << s << " ";
     // cout << endl;
 
-    vector<int> solution2 = levelOrder(head);
-    for(auto s: solution2)
-        cout << s << " ";
-    cout << endl;
+    // // cout << tree_height(head);
+    // vector<int> VOSol = verticalOrder(head);
+    // for(auto s: VOSol)
+    //     cout << s << " ";
+    // cout << endl;
 
-    // cout << tree_height(head);
-    vector<int> VOSol = verticalOrder(head);
-    for(auto s: VOSol)
-        cout << s << " ";
-    cout << endl;
-
-    recursiveLevelOrder(head);
+    // recursiveLevelOrder(head);
     
+    TreeNode* head = new TreeNode(1);
+    TreeNode* temp1 = head->left = new TreeNode(2);
+    TreeNode* temp2 = head->right = new TreeNode(3);
+    temp1->left = new TreeNode(4);
+    temp1->right = new TreeNode(5);
+    temp2->left = new TreeNode(6);
+    temp2->right = new TreeNode(7);
+
+    vector<vector<int>> s = zigzagLevelOrder(head);
+
     return 0;
 }
