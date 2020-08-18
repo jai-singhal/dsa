@@ -1,6 +1,5 @@
 
-// https://leetcode.com/problems/perfect-squares/submissions/
-
+x
 #include<iostream>
 #include<vector>
 #include<cmath>
